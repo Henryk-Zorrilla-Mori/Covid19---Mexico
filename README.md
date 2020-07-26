@@ -1,33 +1,35 @@
 # Covid19---Mexico
 ## Analysis of Covid-19 cases in Mexico
 
-### ¿Cuáles son las columnas que consideras importantes del documento 200504COVID19MEXICO.csv y por qué? (crea una lista con esas columnas y la razón por que son importantes. Trata de investigar el significado de las columnas que desconozcas)
+### ¿What are the columns that you consider important in the document 200504COVID19MEXICO.csv and why? (create a list with those columns and the reason why they are important. Try to investigate the meaning of the columns you don't know).
 
 for col in df.columns:
     print(df[col].value_counts(normalize=True))
     
-Todas las columnas son importantes porque cuanta mas informacion mucho mejor, pero hay algunas que son mas relevante que otras. Y ahí es donde nos vamos a enfocar. En usar la informacion mas relevante para no utilizar tantos datos y hacer el trabajo más sencillo.Así podemos enfocarnos en buscar una solución con estos datos.
-Lo que vamos a agrupar en una lista algunas columnas que vemos que podemos aplicar a personas que pueden estar infectadas por el Covid-19 y así poder tratar al paciente dependiendo si tiene algunas de estas enfermedades que puedan ayudar a que el virus sea más agresivo o no.
-La lista la llamaremos antecendentes y pondremos las enfermedades que podría padecer el paciente o haya tenido en el pasado haciendo que el paciente sea más vulnerable a contraer este virus: 
+All the columns are important because the more information the better, but there are some that are more relevant than others. And that's where we're going to focus. On using the most relevant information so as not to use so much data and make the job easier, so we can focus on finding a solution with this data.
+What we are going to group in a list some columns that we see that we can apply to people that can be infected by the Covid-19 and thus be able to treat the patient depending if he has some of these diseases that can help the virus to be more aggressive or not.
+We will call the list antecedents and put the diseases that the patient could suffer or have had in the past making the patient more vulnerable to contract this virus:
 
-antecedentes= df[['NEUMONIA','DIABETES','INMUSUPR','HIPERTENSION','OBESIDAD','CARDIOVASCULAR','RENAL_CRONICA','TABAQUISMO','OTRA_COM','EPOC' ]]
+antecedents= df[['NEUMONIA','DIABETES','INMUSUPR','HIPERTENSION','OBESIDAD','CARDIOVASCULAR','RENAL_CRONICA','TABAQUISMO','OTRA_COM','EPOC' ]]
 
 
-### Después de revisar los 3 dataframe, encuentra mínimo 4 datos importantes que se podrían obtener a través del análisis de los datos.
+### After reviewing the 3 dataframes, find at least 4 important data that could be obtained through data analysis.
 
-Uno de los elementos que nos parece más interesante es comprobar qué ciudades hacen mejor testeo. Para ello, deberíamos comparar la fecha de ingreso (junto con los síntomas) y realizar comparaciones con los municipios existentes. Des esta manera se puede comprobar la fecha de origen de la mayoria de los casos, evidenciando así que hay comunidades que han realizado más test (por lo que los casos son mayores) frente a otras que tienen fechas de ingreso o síntomas más dispersas, lo que indica que los pacientes han acudido al centro de salud debido a sus síntomas, y no por una prueba previa, además de comprobar si ha existido o no testeo preventivo.
-Otro aspecto que nos ha llamado mucho la atención es que tiene que ver con las enfermedades relacionadas. Para ello, debemos comparar cuánto tiempo ha pasado entre fecha en la que aparecieron los síntomas y la fecha de defunción del paciente. Seguidamente, deberíamos comprobar las distintas enfermedades de cada paciente, siendo éstas: el asma, obesidad, renales / renales crónicas, cardiovasculares, tabaquismo, pacientes inmunodeprimidos, hipertensión, diabetes y EPOC.
-Consideramos que realizar una comparación también podría explicar los ingresos en UCI presentes en el dataset, e incluso podríamos valorar qué evolución sigue la enfermedad en pacientes embarazadas.
-Podemos obtener analizando estos tres Dataframe:
-a) Casos de contagiados por estados y municipios, asi comprobaremos si cuanta mas gente hay en cada municipio el virus es capaz de propagarse más rápido o tambien influyen más factores, como los antecedentes de los afectados.
-b) El numero de pacientes en uci, y cómo están de preparados los sanitarios de cada municipio a esta pandemia
-c) Fecha y defunción de cada paciente ingresado por dar positivo por el covid-19.
-d) El tiempo de recuperación de cada paciente dependiendo si tenia algun antecedente 
+One of the elements we find most interesting is to check which cities do best testing. To do this, we should compare the date of entry (together with the symptoms) and make comparisons with existing municipalities. In this way we can check the date of origin of most cases, thus showing that there are communities that have made more tests (so the cases are greater) compared to others that have dates of admission or more scattered symptoms, which indicates that patients have come to the health center because of their symptoms, and not because of a previous test, in addition to checking whether or not there has been preventive testing.
+Another aspect that has attracted our attention is that it has to do with related diseases. To do this, we must compare how much time has passed between the date on which the symptoms appeared and the date of death of the patient. Next, we should check the different diseases of each patient, being these: asthma, obesity, renal / chronic renal, cardiovascular, smoking, immunosuppressed patients, hypertension, diabetes and COPD.
+We believe that a comparison could also explain the ICU admissions present in the dataset, and we could even assess the evolution of the disease in pregnant patients.
+We can obtain this by analyzing these three Dataframes:
+a) Cases of infection by state and municipality, so we can see whether the more people in each municipality the virus is able to spread more quickly or whether more factors such as the history of those affected also play a role.
+b) The number of patients in the ICU, and how the health system in each municipality is prepared for this pandemic
+c) Date and death of each patient admitted for covid-19 positive
+d) The recovery time of each patient depending on whether they had any history
 
-### Encuentra mínimo 5 gráficas que podrías hacer con los datos y describe la razón de porque hacer esa gráfica y con que variables
 
-Despues de analizar mejor los datos, hemos decidido quedarnos con el segundo caso planteado, que trata de medir la gravedad de la enfermedad si se le asocian otras patologias previas del paciente. En primer lugar, nos gustaría comprobar la alteración en el pronóstico que algunas de las enfermedades podrían representar, tales como asma, addición al tabaco o tener el sistema inmunológico deprimido. Con objeto de analizar estas relaciones, realizaríamos estudios estadísticos para cada enfermedad, comprobando si aceleran o no la gravedad del estado del paciente. Un estudio como este podría focalizar la atención del personal sanitario de una manera más efectiva, al permitir conocer cúales son los pacientes con más riesgos.
-El planteaminentosería el siguiente: usando como grupo de controlexperimental los pacientes fallecidos sin ninguna enfermedad asociada (pero positivos para el virus), se compararian con los positivos que, además, presentan la enfermedad.
-Representaríamos los resultados para cada enfermedad de dos formas diferentes. Una primera, para personal científico a través de un boxplot que permitiría de un vistazo comparar entre grupos emperimentales; y, a través de una gráfico de dispersión, con el que analizaríamos la regresión lineal. En el eje X tendríamos el resultado categórico de la presencia o no de la enfermedad objeto de estudio, y en el eje Y la diferencia entre la fecha de muerte e ingreso del paciente en número de días.
-Un estudio científico simple usando T-student permitiría obtener de forma objetiva y sencilla información sobre cómo la enfermedad puede estar incrementando o no la probabilidad de fallecimiento (analizado sobre el boxplot), mientras que el gráfico de dispersión nos permitiría trazar una línea de regresión y obtener datos más precisos sobre qué tendencia genera la enfermedad.
-Adicionalmente, haríamos un estudio de variables Dummy para realizar una aproximación más matemática a cómo podrían estar afectando las enfermedades en función del sexo del paciente.
+### Find at least 5 graphs you could make with the data and describe the reason for making that graph and with which variables.
+
+After a better analysis of the data, we have decided to keep the second case, which tries to measure the severity of the disease if other previous pathologies of the patient are associated with it. Firstly, we would like to check the alteration in the prognosis that some of the diseases could represent, such as asthma, tobacco addition or having a depressed immune system. In order to analyse these relationships, we would carry out statistical studies for each disease, checking whether or not they accelerate the severity of the patient's condition. A study such as this could focus the attention of health personnel more effectively, by allowing them to know which patients are most at risk.
+The approach would be as follows: using as an experimental control group the patients who died without any associated disease (but positive for the virus), they would be compared with the positive ones who also have the disease.
+We would represent the results for each disease in two different ways. First, for scientific personnel through a boxplot that would allow at a glance to compare between emperimental groups; and, through a scatter plot, with which we would analyze the linear regression. On the X axis we would have the categorical result of the presence or not of the disease under study, and on the Y axis the difference between the date of death and the date of admission of the patient in number of days.
+A simple scientific study using T-student would allow us to objectively and simply obtain information on how the disease may or may not be increasing the probability of death (analyzed on the boxplot), while the scatter plot would allow us to draw a regression line and obtain more precise data on what trend generates the disease.
+Additionally, we would make a study of dummy variables to make a more mathematical approximation of how diseases might be affecting the sex of the patient.
+
