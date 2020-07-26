@@ -1,10 +1,11 @@
 # Covid19---Mexico
-Analysis of Covid-19 cases in Mexico
+## Analysis of Covid-19 cases in Mexico
 
 ### ¿Cuáles son las columnas que consideras importantes del documento 200504COVID19MEXICO.csv y por qué? (crea una lista con esas columnas y la razón por que son importantes. Trata de investigar el significado de las columnas que desconozcas)
 
 for col in df.columns:
     print(df[col].value_counts(normalize=True))
+    
 Todas las columnas son importantes porque cuanta mas informacion mucho mejor, pero hay algunas que son mas relevante que otras. Y ahí es donde nos vamos a enfocar. En usar la informacion mas relevante para no utilizar tantos datos y hacer el trabajo más sencillo.Así podemos enfocarnos en buscar una solución con estos datos.
 Lo que vamos a agrupar en una lista algunas columnas que vemos que podemos aplicar a personas que pueden estar infectadas por el Covid-19 y así poder tratar al paciente dependiendo si tiene algunas de estas enfermedades que puedan ayudar a que el virus sea más agresivo o no.
 La lista la llamaremos antecendentes y pondremos las enfermedades que podría padecer el paciente o haya tenido en el pasado haciendo que el paciente sea más vulnerable a contraer este virus: antecedentes= df[['NEUMONIA','DIABETES','INMUSUPR','HIPERTENSION','OBESIDAD','CARDIOVASCULAR','RENAL_CRONICA','TABAQUISMO','OTRA_COM','EPOC' ]]
